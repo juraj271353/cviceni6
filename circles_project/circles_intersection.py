@@ -1,4 +1,4 @@
-from circles_stats import has_intersection
+from circles_project.circles_stats import has_intersection
 
 circle1 = {
     "x": 0,

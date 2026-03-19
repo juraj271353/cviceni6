@@ -12,3 +12,5 @@
 \[
 d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 \]
+
+![Obrazok prieniku](../cviceni_06/images.jpg)
