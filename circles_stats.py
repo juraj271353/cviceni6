@@ -2,26 +2,15 @@ from math import sqrt, isclose
 
 
 def radius_sum(r1, r2):
-    """Vrátí součet poloměrů."""
     return r1 + r2
 
 
 def euclid_distance(x1, y1, x2, y2):
-    """Vrátí Euklidovskou vzdálenost mezi dvěma body."""
     return sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 
 def has_intersection(circle_1, circle_2):
-    """
-    circle_1 a circle_2 očekáváme jako slovníky:
-    {"x": ..., "y": ..., "r": ...}
 
-    Vrací:
-    {
-        "intersects": bool,
-        "intersections_count": 0 | 1 | 2 | float('inf')
-    }
-    """
 
     x1, y1, r1 = circle_1["x"], circle_1["y"], circle_1["r"]
     x2, y2, r2 = circle_2["x"], circle_2["y"], circle_2["r"]
@@ -30,35 +19,30 @@ def has_intersection(circle_1, circle_2):
     r_sum = radius_sum(r1, r2)
     r_diff = abs(r1 - r2)
 
-    # stejné kružnice (nekonečně mnoho průniků)
     if isclose(d, 0) and isclose(r1, r2):
         return {
             "intersects": True,
             "intersections_count": float('inf')
         }
 
-    # vnější dotyk
     if isclose(d, r_sum):
         return {
             "intersects": True,
             "intersections_count": 1
         }
 
-    # vnitřní dotyk
     if isclose(d, r_diff):
         return {
             "intersects": True,
             "intersections_count": 1
         }
 
-    # dvě průsečnice
     if r_diff < d < r_sum:
         return {
             "intersects": True,
             "intersections_count": 2
         }
 
-    # žádný průnik
     return {
         "intersects": False,
         "intersections_count": 0
